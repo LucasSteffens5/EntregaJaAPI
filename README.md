@@ -1,9 +1,19 @@
 # EntregaJaAPI
 API implementada em .NET 5,  com gerenciar as vendas de uma loja delivery.
 
-
 É possível Criar, Remover, Atualizar e Listar produtos.
+É possível Criar, Cancelar, e Listar Vendas.
 
+O frete é calculado automaticamente através do cep informado pelo destinatário.
+```
+* A sede se localiza em Rio de Janeiro.
+* Entregas na mesma cidade custam R$10,00.
+* Entregas para outras cidades custam R$20,00.
+* Entregas para outros estados custam R$40,00.
+```
+Observações sobre a construção:
+    * Os testes foram realizados utilizando o POSTMAN.
+    * Foi utilizado Entityframeworkcore.postgresql na máquina local durante o desenvolvimento, porém para o envio o projeto esta configurado para utilizar o            Entityframeworkcore.inmemory.
 # Criar Produtos
 
 Para Criar Produtos basta executar o POST com a URL https://localhost:5001/CriarProduto com o seguinte corpo:
