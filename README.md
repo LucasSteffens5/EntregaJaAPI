@@ -15,7 +15,7 @@ API implementada em .NET 5,  com gerenciar as vendas de uma loja delivery.
     * Os testes foram realizados utilizando o POSTMAN.    
     * Foi utilizado Entityframeworkcore.postgresql na máquina local durante o desenvolvimento, porém para o envio o projeto esta configurado para utilizar o            Entityframeworkcore.inmemory.
 Para executar a aplicação basta abrir a solução no visual studio 2019, instalar os pacotes se requisitados e executar.
-Após basta utilizar o POSTMAN para realizar as requisições exemplificadas abaixo.
+Após basta utilizar o POSTMAN (foi disponibilizado a exportação da coleção do POSTMAN) para realizar as requisições exemplificadas abaixo.
 
 # Criar Produtos
 
