@@ -14,7 +14,7 @@ Para Criar Produtos basta executar o POST com a URL https://localhost:5001/Criar
     "Preco": 20.5
 }
 ```
-A resposta esperada é:
+A resposta esperada é 201 Created: 
 
 ```javascript
 {
@@ -44,13 +44,52 @@ Onde {id} indica o identificador único do produto.
     "preco": 5.5
 }
 ```
+A resposta esperada é um 204 no content.
 
-# Listar Produtos
+# Listar Todos os Produtos
 Para listar todos os produtos basta executar o comando GET com a URL https://localhost:5001/ListarProdutos
 
-Para lista um produto basta executar o comando GET com a URL https://localhost:5001/ConsultarProduto/{id}
+A resposta esperada é 200 Ok: 
+
+```javascript
+[
+    {
+        "idProduto": 3,
+        "nome": "Tomate",
+        "descricao": "Italiano",
+        "preco": 4.5
+    },
+    {
+        "idProduto": 2,
+        "nome": "Cebola",
+        "descricao": "In Natur",
+        "preco": 5.5
+    },
+    {
+        "idProduto": 4,
+        "nome": "Vinho",
+        "descricao": "Português",
+        "preco": 40.5
+    }
+]
+```
+
+
+# Listar Produtos por Id
+Para listar um produto basta executar o comando GET com a URL https://localhost:5001/ConsultarProduto/{id}
 Onde {id} indica o identificador único do produto.
 
+A resposta esperada é 200 Ok: 
+
+```javascript
+{
+    "idProduto": 3,
+    "nome": "Tomate",
+    "descricao": "Italiano",
+    "preco": 4.5,
+    "horaDaConsulta": "2021-10-08T12:30:45.4707268-04:00"
+}
+```
 
 
 # Criar Vendas
@@ -58,7 +97,7 @@ Para criar uma venda basta executar o comando POST com a URL https://localhost:5
 
 ```javascript
 {
-  "cep": "78570-000",
+  "cep": "27700-000",
   "produtosDaVenda": [
     {
       "idProduto": 3,
@@ -71,7 +110,78 @@ Para criar uma venda basta executar o comando POST com a URL https://localhost:5
   ]
 }
 ```
+A resposta esperada é 201 Created:
+
+```javascript
+{
+    "idVenda": 3,
+    "cep": "27700-000",
+    "dataHoraVenda": "2021-10-08T12:32:00.7604346-04:00",
+    "dataHoraCancelamentoVenda": "0001-01-01T00:00:00",
+    "valorFrete": 20,
+    "valorTotalVenda": 220.5,
+    "produtosDaVenda": [
+        {
+            "idProdutoNaVenda": 3,
+            "idProduto": 3,
+            "nome": "Tomate",
+            "descricao": null,
+            "preco": 4.5,
+            "quantidade": 4
+        },
+        {
+            "idProdutoNaVenda": 4,
+            "idProduto": 4,
+            "nome": "Vinho",
+            "descricao": null,
+            "preco": 40.5,
+            "quantidade": 5
+        }
+    ]
+}
+```
+
 É retornado um Bad Request caso:
 
 * O CEP não seja informado ou informado de maneira invalida.
 * Algum dos itens informados não existir na base de dados.
+
+# Cancelar Venda
+Para cancelar uma venda basta executar o comando PUT com a URL https://localhost:5001/CancelarVenda/{id}
+Onde {id} indica o identificador único da venda.
+A resposta esperada é 204 no content:
+
+# Consultar Historico de Venda
+Para consultar o histórico de venda basta executar o comando GET com a URL https://localhost:5001/HistoricoDeVenda
+A resposta esperada é um 200 Ok:
+  
+  ```javascript
+[
+    {
+        "idVenda": 1,
+        "cep": "78570-000",
+        "dataHoraVenda": "2021-10-08T12:24:14.3904638-04:00",
+        "dataHoraCancelamentoVenda": "2021-10-08T12:34:02.7071849-04:00",
+        "valorFrete": 40,
+        "valorTotalVenda": 184.5       
+    }
+]
+```
+
+# Consultar Venda por id
+Para consultar uma venda por id basta executar o comando GET com a URL https://localhost:5001/ConsultarVenda/{id}
+Onde {id} indica o identificador único da venda.
+
+O resultado esperado é um 200 Ok: 
+
+```javascript
+{
+    "idVenda": 1,
+    "cep": "78570-000",
+    "dataHoraVenda": "2021-10-08T12:24:14.3904638-04:00",
+    "dataHoraCancelamentoVenda": "2021-10-08T12:34:02.7071849-04:00",
+    "valorFrete": 40,
+    "valorTotalVenda": 184.5,
+    "produtosDaVenda": []
+}
+```
