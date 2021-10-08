@@ -1,11 +1,9 @@
 # EntregaJaAPI
 API implementada em .NET 5,  com gerenciar as vendas de uma loja delivery.
 
-É possível Criar, Remover, Atualizar e Listar produtos.
-
-É possível Criar, Cancelar, e Listar Vendas.
-
-O frete é calculado automaticamente através do cep informado pelo destinatário.
+* É possível Criar, Remover, Atualizar e Listar produtos.
+* É possível Criar, Cancelar, e Listar Vendas.
+* O frete é calculado automaticamente através do cep informado pelo destinatário.
 ```
 * A sede se localiza em Rio de Janeiro.
 * Entregas na mesma cidade custam R$10,00.
