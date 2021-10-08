@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31624.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntregaJaAPI", "EntregaJaAPI\EntregaJaAPI.csproj", "{164320DE-516E-4650-BD37-41C02A988A0A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntregaJaApiTest", "EntregaJaApiTest\EntregaJaApiTest.csproj", "{62C31DD8-813F-41B9-B6C0-34BA1E7B9074}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{164320DE-516E-4650-BD37-41C02A988A0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{164320DE-516E-4650-BD37-41C02A988A0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{164320DE-516E-4650-BD37-41C02A988A0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{164320DE-516E-4650-BD37-41C02A988A0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62C31DD8-813F-41B9-B6C0-34BA1E7B9074}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62C31DD8-813F-41B9-B6C0-34BA1E7B9074}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62C31DD8-813F-41B9-B6C0-34BA1E7B9074}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62C31DD8-813F-41B9-B6C0-34BA1E7B9074}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8AF1F1C9-D944-4F75-8643-44190C45159A}
+	EndGlobalSection
+EndGlobal
