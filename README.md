@@ -11,9 +11,13 @@ O frete é calculado automaticamente através do cep informado pelo destinatári
 * Entregas para outras cidades custam R$20,00.
 * Entregas para outros estados custam R$40,00.
 ```
-Observações sobre a construção:
-    * Os testes foram realizados utilizando o POSTMAN.
+# Observações sobre a construção:
+
+    * Os testes foram realizados utilizando o POSTMAN.    
     * Foi utilizado Entityframeworkcore.postgresql na máquina local durante o desenvolvimento, porém para o envio o projeto esta configurado para utilizar o            Entityframeworkcore.inmemory.
+Para executar a aplicação basta abrir a solução no visual studio 2019, instalar os pacotes se requisitados e executar.
+Após basta utilizar o POSTMAN para realizar as requisições exemplificadas abaixo.
+
 # Criar Produtos
 
 Para Criar Produtos basta executar o POST com a URL https://localhost:5001/CriarProduto com o seguinte corpo:
