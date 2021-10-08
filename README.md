@@ -1,0 +1,6 @@
+# EntregaJaAPI
+
+
+```javascript
+{ "some": "json" }
+```
