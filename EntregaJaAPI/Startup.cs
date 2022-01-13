@@ -1,4 +1,4 @@
-using EntregaJaAPI.Data;
+using EntregaJaAPI.Infra.Data.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +10,7 @@ using System;
 
 namespace EntregaJaAPI
 {
-	public class Startup
+    public class Startup
     {
         public Startup(IConfiguration configuration)
         {
@@ -25,10 +25,9 @@ namespace EntregaJaAPI
 
             services.AddDbContext<DataContext>(options => options.UseInMemoryDatabase("Database"));
 
-          //  services.AddDbContext<DataContext>(options =>
-          //options.UseNpgsql(Configuration.GetConnectionString("PostGreServerConnection")));
+            //  services.AddDbContext<DataContext>(options =>
+            //options.UseNpgsql(Configuration.GetConnectionString("PostGreServerConnection")));
 
-      
             services.AddControllers();
 
             services.AddSwaggerGen(c =>
