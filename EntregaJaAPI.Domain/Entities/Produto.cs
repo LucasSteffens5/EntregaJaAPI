@@ -1,13 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace EntregaJaAPI.Models
+namespace EntregaJaAPI.Domain.Entities
 {
-	public class Produto
+    public class Produto : BaseEntity
     {
-        [Key]
-        [Required]
-        public int IdProduto { get; set; }
-
         [Required(ErrorMessage = "O campo de nome é obrigatório")]
         public string Nome { get; set; }
 
