@@ -1,11 +1,11 @@
-﻿using EntregaJaAPI.Models;
+﻿using EntregaJaAPI.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace EntregaJaAPI.Data.DTOs
 {
-	public class LerVendaDto
+    public class LerVendaDto
     {
 		[Key]
 		[Required]

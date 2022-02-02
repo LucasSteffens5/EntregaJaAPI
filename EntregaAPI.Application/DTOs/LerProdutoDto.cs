@@ -1,13 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace EntregaJaAPI.Data.DTOs
 {
-    public class CriarProdutoDto
+    public class LerProdutoDto
     {
+        [Key]
+        [Required]
+        public int IdProduto { get; set; }
 
         [Required(ErrorMessage = "O campo de nome é obrigatório")]
         public string Nome { get; set; }
@@ -16,6 +16,6 @@ namespace EntregaJaAPI.Data.DTOs
 
         [Required(ErrorMessage = "O campo de preço é obrigatório")]
         public decimal Preco { get; set; }
-
+        public DateTime HoraDaConsulta { get; set; }
     }
 }

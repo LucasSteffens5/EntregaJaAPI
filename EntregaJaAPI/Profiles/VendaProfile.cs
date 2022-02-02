@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using EntregaJaAPI.Data.DTOs;
-using EntregaJaAPI.Models;
+using EntregaJaAPI.Domain.Entities;
 
 namespace EntregaJaAPI.Profiles
 {
-	public class VendaProfile : Profile
+    public class VendaProfile : Profile
     {
         public VendaProfile()
         {

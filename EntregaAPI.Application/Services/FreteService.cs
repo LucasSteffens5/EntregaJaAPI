@@ -1,15 +1,10 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace EntregaJaAPI.Assistants
+namespace EntregaAPI.Application.Services
 {
-	public class GerenciadorDeFrete
-	{
-		public GerenciadorDeFrete()
-		{
-
-		}
-
+    public class FreteService
+    {
 		public decimal CalcularFrete(string cep)
 		{
 			var cepApenasDigitos = RetornarApenasDigitos(cep);

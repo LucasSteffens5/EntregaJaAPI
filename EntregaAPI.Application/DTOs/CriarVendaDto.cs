@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace EntregaJaAPI.Data.DTOs
 {
-	public class CriarVendaDto
+    public class CriarVendaDto
     {
 
 		[Required(ErrorMessage = "O campo CEP é obrigatório")]

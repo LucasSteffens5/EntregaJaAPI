@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\EntregaAPI.Application\EntregaAPI.Application.csproj" />
     <ProjectReference Include="..\EntregaJaAPI.Domain\EntregaJaAPI.Domain.csproj" />
     <ProjectReference Include="..\EntregaJaAPI.Infra.Data\EntregaJaAPI.Infra.Data.csproj" />
   </ItemGroup>

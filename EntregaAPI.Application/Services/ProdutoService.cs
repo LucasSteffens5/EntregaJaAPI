@@ -1,4 +1,5 @@
-﻿using EntregaJaAPI.Domain.Entities;
+﻿using EntregaJaAPI.Data.DTOs;
+using EntregaJaAPI.Domain.Entities;
 using EntregaJaAPI.Domain.Repositories;
 using System;
 using System.Collections.Generic;
