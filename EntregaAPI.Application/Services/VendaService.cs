@@ -1,22 +1,26 @@
-﻿using EntregaJaAPI.Domain.Entities;
+﻿using EntregaAPI.Application.Interfaces;
+using EntregaJaAPI.Domain.Entities;
 using EntregaJaAPI.Domain.Repositories;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace EntregaAPI.Application.Services
 {
-    public  class VendaService
-    {
+    public  class VendaService: IVendaService
+	{
         private readonly IVendaRepository _vendaRepository;
-		private readonly ProdutoService _gerenciadorProdutos;
-		private readonly ProdutoNaVendaService _gerenciadorDeProdutosNaVenda;
-		private readonly FreteService _calculadorFrete;
+		private readonly IProdutoService _gerenciadorProdutos;
+		private readonly IProdutoNaVendaService _gerenciadorDeProdutosNaVenda;
+		private readonly IFreteService _calculadorFrete;
 
-		public VendaService(IVendaRepository vendaRepository)
+		public VendaService(IVendaRepository vendaRepository, IProdutoService produtoService, IProdutoNaVendaService produtoNaVendaService , IFreteService freteService)
         {
             _vendaRepository = vendaRepository;
-        }
+			_gerenciadorProdutos = produtoService;
+			_gerenciadorDeProdutosNaVenda = produtoNaVendaService;
+			_calculadorFrete = freteService;
+
+		}
 
 		public void RealizarVenda(Venda venda)
 		{
@@ -25,7 +29,7 @@ namespace EntregaAPI.Application.Services
 
 			foreach (var produtoNaVenda in venda.ProdutosDaVenda)
 			{
-				var produto = _gerenciadorProdutos.BuscarProdutoPorIdNaBaseDeDados(produtoNaVenda.IdProduto);
+				var produto = _gerenciadorProdutos.BuscarProdutoPorIdNaBaseDeDados(produtoNaVenda.Id);
 
 				if (_gerenciadorProdutos.ProdutoNaoEncontrado(produto.Result)) throw new Exception();
 
@@ -39,22 +43,22 @@ namespace EntregaAPI.Application.Services
 			AdicionarVendaAoBancoDeDados(venda);
 		}
 
-		private void CalcularValorDoFrete(Venda venda)
+		public void CalcularValorDoFrete(Venda venda)
 		{
 			venda.ValorFrete = _calculadorFrete.CalcularFrete(venda.Cep);
 		}
 
-		private void CalcularValorTotalDaVenda(Venda venda, ProdutoNaVenda produtoNaVenda, Produto produto)
+		public void CalcularValorTotalDaVenda(Venda venda, ProdutoNaVenda produtoNaVenda, Produto produto)
 		{
 			venda.ValorTotalVenda += produto.Preco * produtoNaVenda.Quantidade;
 		}
 
-		private void PreencherDataHoraVenda(Venda venda)
+		public void PreencherDataHoraVenda(Venda venda)
 		{
 			venda.DataHoraVenda = DateTime.Now;
 		}
 
-		private void AdicionarVendaAoBancoDeDados(Venda venda)
+		public void AdicionarVendaAoBancoDeDados(Venda venda)
 		{
 			_vendaRepository.AddAsync(venda);
 		}
@@ -77,5 +81,6 @@ namespace EntregaAPI.Application.Services
 			venda.DataHoraCancelamentoVenda = DateTime.Now;
 			_vendaRepository.UpdateAsync(venda);
 		}
-	}
+      
+    }
 }

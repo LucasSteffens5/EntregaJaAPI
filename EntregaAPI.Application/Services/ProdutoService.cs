@@ -1,4 +1,5 @@
-﻿using EntregaJaAPI.Data.DTOs;
+﻿using EntregaAPI.Application.Interfaces;
+using EntregaJaAPI.Data.DTOs;
 using EntregaJaAPI.Domain.Entities;
 using EntregaJaAPI.Domain.Repositories;
 using System;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EntregaAPI.Application.Services
 {
-    public class ProdutoService
+    public class ProdutoService : IProdutoService
     {
         private readonly IProdutoRepository _produtoRepository;
 
@@ -30,6 +31,11 @@ namespace EntregaAPI.Application.Services
         public bool ProdutoNaoEncontrado(Produto produto)
         {
             return produto == null ? true : false;
+        }
+
+        public async void AtualizarProduto(Produto produto)
+        {
+             await _produtoRepository.UpdateAsync(produto);
         }
 
         public async Task<IEnumerable<Produto>> RetornarTodosProdutosDaBaseDeDados()

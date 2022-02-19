@@ -1,25 +1,24 @@
-﻿using EntregaJaAPI.Assistants;
-using EntregaJaAPI.Models;
+﻿using EntregaJaAPI.Domain.Entities;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
 namespace EntregaJaApiTest
 {
-	[TestClass] 
+    [TestClass] 
 	public class GerenciadorDeVendasTest
 	{
 
 		[TestMethod]
 		public void AoBuscarVendaDeveRetornarFalse()
 		{
-			var gerenciadorDeVendas = new GerenciadorDeVendas();
+			//var gerenciadorDeVendas = "mock aqui";//new GerenciadorDeVendas();
 
-			var venda = new Mock<Venda>();
+			//var venda = new Mock<Venda>();
 
-			var resultado = gerenciadorDeVendas.VendaNaoEncontrada(venda.Object);
+			//var resultado = gerenciadorDeVendas.VendaNaoEncontrada(venda.Object);
 
-			resultado.Should().BeFalse();
+			//resultado.Should().BeFalse();
 		}
 	}
 }

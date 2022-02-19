@@ -4,7 +4,6 @@ namespace EntregaJaAPI.Domain.Entities
 {
     public class ProdutoNaVenda : BaseEntity
     {
-        public int IdProduto { get; set; }
 
         [Required(ErrorMessage = "O campo de nome é obrigatório")]
         public string Nome { get; set; }

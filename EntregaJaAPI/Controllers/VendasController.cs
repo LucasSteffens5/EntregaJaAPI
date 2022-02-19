@@ -1,25 +1,25 @@
 ﻿using AutoMapper;
-using EntregaJaAPI.Assistants;
-using EntregaJaAPI.Data;
+using EntregaAPI.Application.Interfaces;
 using EntregaJaAPI.Data.DTOs;
-using EntregaJaAPI.Models;
+using EntregaJaAPI.Domain.Entities;
+using EntregaJaAPI.Infra.Data.Context;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 
 namespace EntregaJaAPI.Controllers
 {
-	[Route("[controller]")]
+    [Route("[controller]")]
 	[ApiController]
 	public class VendasController : ControllerBase
 	{
 		private IMapper _mapper;
-		private readonly GerenciadorDeVendas _gerenciadorDeVendas;
+		private readonly IVendaService _gerenciadorDeVendas;
 
-		public VendasController(IMapper mapper)
+		public VendasController(IMapper mapper, IVendaService vendaService)
 		{
 			_mapper = mapper;
-			_gerenciadorDeVendas = new GerenciadorDeVendas();
+			_gerenciadorDeVendas = vendaService;
 		}
 
 		[Route("/RealizarVenda")]
@@ -30,48 +30,49 @@ namespace EntregaJaAPI.Controllers
 
 			try
 			{
-				_gerenciadorDeVendas.RealizarVenda(venda, contexto);
+				_gerenciadorDeVendas.RealizarVenda(venda);
 			}
 			catch (Exception)
 			{
 				return BadRequest(); 
 			}
 
-			return CreatedAtAction(nameof(RecuperarVendaPorId), new { Id = venda.IdVenda }, venda);
+			return CreatedAtAction(nameof(RecuperarVendaPorId), new { Id = venda.Id }, venda);
 		}
 
 
 
 		[HttpGet("/ConsultarVenda/{id}")]
-		public IActionResult RecuperarVendaPorId([FromServices] DataContext contexto, int id)
+		public IActionResult RecuperarVendaPorId(int id)
 		{
-			Venda venda = _gerenciadorDeVendas.BuscarVendaPorId(contexto, id);
+            Venda venda = _gerenciadorDeVendas.BuscarVendaPorId( id);
 
-			if (_gerenciadorDeVendas.VendaNaoEncontrada(venda)) return NotFound();
+            if (_gerenciadorDeVendas.VendaNaoEncontrada(venda)) return NotFound();
 
-			LerVendaDto vendaDto = _mapper.Map<LerVendaDto>(venda);
+            LerVendaDto vendaDto = _mapper.Map<LerVendaDto>(venda);
 
-			return Ok(vendaDto);
+            return Ok(vendaDto);
+           
 		}
 
 
-		[HttpGet("/HistoricoDeVenda")]
-		public IEnumerable<Venda> HistoricoDeVenda([FromServices] DataContext contexto)
+        [HttpGet("/HistoricoDeVenda")]
+        public IEnumerable<Venda> HistoricoDeVenda()
+        {
+            return _gerenciadorDeVendas.RetornarTodasVendasDaBaseDeDados();
+        }
+
+
+        [HttpPut("/CancelarVenda/{id}")]
+		public IActionResult CancelarVenda(int id)
 		{
-			return _gerenciadorDeVendas.RetornarTodasVendasDaBaseDeDados(contexto);
-		}
+            Venda venda = _gerenciadorDeVendas.BuscarVendaPorId(id);
 
+            if (_gerenciadorDeVendas.VendaNaoEncontrada(venda)) return NotFound();
 
-		[HttpPut("/CancelarVenda/{id}")]
-		public IActionResult CancelarVenda(int id, [FromServices] DataContext contexto)
-		{
-			Venda venda = _gerenciadorDeVendas.BuscarVendaPorId(contexto, id);
+            _gerenciadorDeVendas.CancelarVenda(venda);
 
-			if (_gerenciadorDeVendas.VendaNaoEncontrada(venda)) return NotFound();			
-
-			_gerenciadorDeVendas.CancelarVenda(venda ,contexto);
-			
-			return NoContent();
+            return NoContent();
 		}
 
 	}

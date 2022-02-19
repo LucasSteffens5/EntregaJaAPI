@@ -1,3 +1,5 @@
+using EntregaAPI.Application.Interfaces;
+using EntregaAPI.Application.Services;
 using EntregaJaAPI.Infra.Data.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -29,6 +31,12 @@ namespace EntregaJaAPI
             //options.UseNpgsql(Configuration.GetConnectionString("PostGreServerConnection")));
 
             services.AddControllers();
+
+            //services.AddTransient<IFreteService, FreteService>();
+            //services.AddTransient<IVendaService, VendaService>();
+            //services.AddTransient<IProdutoNaVendaService, ProdutoNaVendaService>();
+            //services.AddTransient<IProdutoService, ProdutoService>();
+
 
             services.AddSwaggerGen(c =>
             {

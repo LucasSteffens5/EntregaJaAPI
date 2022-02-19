@@ -1,9 +1,10 @@
-﻿using EntregaJaAPI.Domain.Entities;
+﻿using EntregaAPI.Application.Interfaces;
+using EntregaJaAPI.Domain.Entities;
 using EntregaJaAPI.Domain.Repositories;
 
 namespace EntregaAPI.Application.Services
 {
-    public class ProdutoNaVendaService
+    public class ProdutoNaVendaService: IProdutoNaVendaService
     {
         private readonly IProdutoNaVendaRepository _produtoNaVendaRepository;
 
